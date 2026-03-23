@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+            navbar.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.5)';
             navbar.style.padding = '0';
         } else {
-            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.5)';
             navbar.style.padding = '0';
         }
     });
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
-    
+
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         const icon = hamburger.querySelector('i');
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
         let current = '';
-        
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
@@ -80,4 +80,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Typewriter Effect
+    const typeWriterElement = document.getElementById('typewriter');
+    if (typeWriterElement) {
+        const textToType = typeWriterElement.getAttribute('data-text');
+        typeWriterElement.innerHTML = '';
+        let i = 0;
+
+        function typeWriter() {
+            if (i < textToType.length) {
+                typeWriterElement.innerHTML += textToType.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50); // Speed of typing
+            }
+        }
+
+        // Start typing after a short delay
+        setTimeout(typeWriter, 800);
+    }
 });
